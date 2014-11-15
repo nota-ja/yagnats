@@ -1,6 +1,7 @@
 package yagnats
 
 import (
+	"math/rand"
 	"sync"
 	"time"
 )
@@ -47,6 +48,8 @@ type Subscription struct {
 }
 
 func NewClient() *Client {
+	rand.Seed(time.Now().UnixNano())
+
 	return &Client{
 		connection:    make(chan *Connection),
 		subscriptions: make(map[int64]*Subscription),
